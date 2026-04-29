@@ -1,14 +1,148 @@
-## TFIDF Fake News Detection
-As the title suggests, the project focuses on exploring TFIDF vectorization and its potential.
+# 📰 Fake News Detection using TF-IDF and Machine Learning
 
-In the first part, various data visualisation techniques, including WordCloud, are applied to understand the dataset and to provide an intuitive justification - supported 
-by a mathematical description - for TFIDF vectorization, which is widely used in this type of task.
+## 📌 Overview
+This project focuses on detecting fake news articles using Natural Language Processing (NLP) techniques and Machine Learning models. The system uses **TF-IDF vectorization** combined with multiple classifiers to identify whether a news article is **REAL or FAKE**.
 
-The second part is a straightforward application of Data Science methods: data preprocessing with `pandas`, `numpy` and `nltk`, model 
-selection with `scikitlearn`, hyperparameter tuning with grid-search and cross-validation techniques. In this part, much importance is given to the running time and 
-computational cost of the various models: the aim is to choose a simple, fast model with the highest possible performance.
+The project also includes:
+- Model comparison
+- Hyperparameter tuning
+- Explainable predictions
+- REST API deployment using Flask
+- Docker containerization
 
-The third and final part aims to answer the following question: is it possible to boost the model's performance by including the output of a pre-trained Sentiment Analysis model? 
-To answer this, we embark on a journey into the world of news and the sentiments contained within them, trying to understand if "emotions" play a significant role in fake news 
-detection. The final model is a neural network created with `keras` that takes as input feature vectors combining the output of the classifier 
-trained on the texts and that of the Sentiment Analysis model.
+---
+
+## 🚀 Features
+- Text preprocessing and feature extraction using TF-IDF
+- Multiple ML models:
+  - Logistic Regression
+  - Support Vector Machine (SVM)
+  - Random Forest
+  - Naive Bayes
+  - Multi-layer Perceptron (MLP)
+- Hyperparameter tuning using GridSearchCV
+- Model performance comparison
+- Confusion matrix visualization
+- Rule-based explanation generator
+- REST API using Flask
+- Dockerized deployment
+
+---
+
+## 🧠 Model Performance
+
+| Model                | Accuracy |
+|---------------------|----------|
+| Logistic Regression | 0.935    |
+| SVM                 | 0.932    |
+| Random Forest       | 0.920    |
+| Naive Bayes         | 0.900    |
+| MLP                 | 0.940    |
+
+✅ **Best Model: MLP (94%)**
+
+---
+
+## 📊 Sample Output
+
+Input:
+
+Breaking shocking news revealed today
+
+Output:
+
+Prediction: FAKE
+Explanation: Sensational language detected, likely fake news.
+
+
+---
+
+## ⚙️ Tech Stack
+
+- Python
+- Scikit-learn
+- Pandas / NumPy
+- Matplotlib / Seaborn
+- Flask
+- Docker
+
+---
+
+## 📁 Project Structure
+
+├── app.py # Flask API
+├── Dockerfile # Container configuration
+├── requirements.txt # Dependencies
+├── models/ # Trained models (ignored in Git)
+├── notebooks/ # Jupyter notebooks
+├── sentiment.py # Sentiment analysis module
+└── README.md
+
+
+---
+
+## ▶️ Running Locally
+
+### 1. Install dependencies
+
+pip install -r requirements.txt
+
+### 2. Run Flask app
+
+python app.py
+
+### 3. Test API
+
+curl -X POST http://127.0.0.1:5000/predict
+
+-H "Content-Type: application/json"
+-d '{"text": "Breaking shocking news revealed today"}'
+
+---
+
+## 🐳 Docker Deployment
+
+### Build image
+
+docker build -t fake-news-app .
+
+### Run container
+
+docker run -p 5001:5000 fake-news-app
+
+---
+
+## 📌 API Endpoint
+
+**POST /predict**
+
+Request:
+```json
+{
+  "text": "your news text"
+}
+```
+Response:
+```
+{
+  "prediction": "FAKE",
+  "explanation": "Sensational language detected..."
+}
+```
+⚠️ Limitations
+
+* Model depends on dataset quality
+* Rule-based explanation is simplistic
+* Version mismatch warnings in sklearn (non-critical)
+
+📈 Future Improvements
+
+* Use deep learning models (BERT, LSTM)
+* Improve explainability (LIME/SHAP)
+* Deploy on cloud (AWS/GCP)
+* Build frontend UI
+
+👤 Author
+
+Josephine Sherly 
+
